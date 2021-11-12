@@ -20,9 +20,9 @@ export class CreateArticleDto {
 
   @IsString()
   @IsNotEmpty()
-  readonly article_title: string;
+  readonly story_title: string;
 
   @IsString()
   @IsNotEmpty()
-  readonly article_url: string;
+  readonly story_url: string;
 }
