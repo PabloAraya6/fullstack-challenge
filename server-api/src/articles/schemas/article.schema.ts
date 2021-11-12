@@ -16,10 +16,10 @@ export class Article extends Document {
   author: string;
 
   @Prop()
-  article_title: string;
+  story_title: string;
 
   @Prop()
-  article_url: string;
+  story_url: string;
 }
 
 export const ArticleSchema = SchemaFactory.createForClass(Article);

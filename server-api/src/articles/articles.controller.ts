@@ -97,4 +97,18 @@ export class ArticlesController {
       article,
     });
   }
+
+  @Delete('')
+  public async deleteAllArticles(@Res() res) {
+    try {
+      const article = await this.articlesService.removeAll();
+      return res.status(HttpStatus.OK).json({
+        message: article,
+      });
+    } catch (error) {
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+        message: error,
+      });
+    }
+  }
 }

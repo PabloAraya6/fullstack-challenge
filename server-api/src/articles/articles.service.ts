@@ -17,19 +17,11 @@ export class ArticlesService {
   ): Promise<Article[]> {
     const { limit, offset } = paginationQuery;
 
-    return await this.articleModel
-      .find()
-      .skip(offset)
-      .limit(limit)
-      .populate('organization')
-      .exec();
+    return await this.articleModel.find().skip(offset).limit(limit).exec();
   }
 
   public async findOne(articleId: string): Promise<Article> {
-    const article = await this.articleModel
-      .findById({ _id: articleId })
-      .populate('organization')
-      .exec();
+    const article = await this.articleModel.findById({ _id: articleId }).exec();
 
     if (!article) {
       throw new NotFoundException(`Article #${articleId} not found`);
@@ -60,9 +52,16 @@ export class ArticlesService {
   }
 
   public async remove(articleId: string): Promise<any> {
-    const deletedArticle = await this.articleModel.findByIdAndRemove(
-      articleId,
-    );
+    const deletedArticle = await this.articleModel.findByIdAndRemove(articleId);
     return deletedArticle;
+  }
+
+  public async removeAll(): Promise<any> {
+    try {
+      await this.articleModel.deleteMany({});
+      return 'All articles has been deleted';
+    } catch (error) {
+      return 'error: ' + error;
+    }
   }
 }
