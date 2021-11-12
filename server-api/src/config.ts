@@ -13,6 +13,6 @@ export const config = {
 };
 
 const credentials = `${config.username}:${config.password}`;
-const settings = `${config.host}:${config.database_port}/${config.database_name}`;
+const settings = `${config.host}:${config.database_port}`;
 
 export const uri = `${config.connection}://${credentials}@${settings}`;

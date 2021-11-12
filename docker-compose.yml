@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  server-api:
+    build:
+      dockerfile: Dockerfile
+      context: ./server-api
+    ports:
+      - 3001:3001
+    environment:
+      PORT: 3001
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: api-news
+      DB_PORT: 27017
+      DB_HOST: mongodb
+      DB_CONNECTION: mongodb
+    volumes:
+      - /app/node_modules
+      - ./server-api:/app
+    links:
+      - mongodb
+    networks:
+      - app-network
+    depends_on:
+      mongodb:
+        condition: service_started
+  mongodb:
+    image: mongo:4.4
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - ./mongo_data:/data/db
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
