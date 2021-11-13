@@ -15,6 +15,20 @@ function App() {
       })
   }, [])
 
+  const onDelete = (id) => {
+    axios.delete(`http://localhost:3001/api/articles/${id}`)
+      .then(() => {
+        getData()
+      })
+  }
+
+  const getData = () => {
+    axios.get(`http://localhost:3001/api/articles`)
+      .then((getData) => {
+        setAPIData(getData.data);
+      })
+  }
+
   return (
     <div className="main">
       <header className="main-header">
@@ -26,7 +40,8 @@ function App() {
             <div className="article">
               <Article
                 key={i}
-                {...data} 
+                {...data}
+                onDelete={onDelete}
               />
             </div>
           )

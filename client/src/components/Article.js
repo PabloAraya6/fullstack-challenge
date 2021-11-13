@@ -45,26 +45,25 @@ const onClickUrl = (url) => {
 const handleFormat = (date) => {
     const today = moment(date).isSame(moment(), "day")
     const yesterday = moment(date).isSame(moment().subtract(1, 'day'), "day")
-    if(today) return moment(date).format('HH:mm a')
+    if (today) return moment(date).format('HH:mm a')
     if (yesterday) return 'yesterday'
     return moment(date).format('MMM DD')
 }
 
-const Article = ({ _id, story_title, title, story_url, author, created_at }) => (
+const Article = ({ _id, story_title, title, story_url, author, created_at, onDelete }) => (
     <div style={styles.all}>
-        <div style={styles.row} onClick={onClickUrl(story_url)}>
-            <div style={styles.col1}>
+        <div style={styles.row}>
+            <div style={styles.col1} onClick={onClickUrl(story_url)}>
                 {story_title || title}<span style={styles.gray}> - {author} - </span>
             </div>
-            <div style={styles.col2}>
+            <div style={styles.col2} onClick={onClickUrl(story_url)}>
                 {handleFormat(created_at)}
             </div>
-            <div style={styles.col3}>
-                🗑️
+            <div style={styles.col3} >
+                <div onClick={() => onDelete(_id)}>🗑️</div>
             </div>
         </div>
     </div>
-
 )
 
 export default Article
