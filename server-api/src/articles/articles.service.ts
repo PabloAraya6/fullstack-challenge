@@ -17,7 +17,12 @@ export class ArticlesService {
   ): Promise<Article[]> {
     const { limit, offset } = paginationQuery;
 
-    return await this.articleModel.find().skip(offset).limit(limit).exec();
+    return await this.articleModel
+      .find()
+      .skip(offset)
+      .limit(limit)
+      .sort({ created_at: -1 })
+      .exec();
   }
 
   public async findOne(articleId: string): Promise<Article> {
