@@ -2,6 +2,13 @@
 .main-header {
     font-family: 'Varela Round', sans-serif;
 }
+
+.article {
+    background-color: #FFF;
+}
+.article:hover {
+    background-color: #F2F2F2;
+}
 .all {
     font-size: "20px";
 }
