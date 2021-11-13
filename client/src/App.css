@@ -1,38 +1,33 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Varela+Round&display=swap');
+.main-header {
+    font-family: 'Varela Round', sans-serif;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.all {
+    font-size: "20px";
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.row {
+    padding-left: "30px";
+    padding-top: "25px";
+    background-color: "white";
+    margin: "0 30px";
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.col1 {
+    width: "70%";
+    display: "inline-block";
 }
-
-.App-link {
-  color: #61dafb;
+.col2 {
+    width: "20%";
+    display: "inline-block";
+    text-align: "center";
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.col3 {
+    width: "10%";
+    display: "inline-block";
+    text-align: "center";
+}
+.hr {
+    margin-top: "25px";
+}
+.gray {
+    color: "gray";
 }
