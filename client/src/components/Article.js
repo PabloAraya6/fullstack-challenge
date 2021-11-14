@@ -71,7 +71,6 @@ function Article({ _id, story_title, title, story_url, author, created_at, onDel
     return (
         <div style={styles.all} onMouseOver={() => onHover()}
             onMouseLeave={() => onLeave()} >
-            {console.log(styles)}
             <div style={styles.row} >
                 <div style={styles.col1} onClick={onClickUrl(story_url)}>
                     {story_title || title}<span style={styles.gray}> - {author} - </span>
