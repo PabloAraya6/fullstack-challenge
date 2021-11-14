@@ -1,39 +1,56 @@
+import React, { useState } from 'react';
 import moment from 'moment'
-const styles = {
-    all: {
-        paddingLeft: '40px',
-        paddingRight: '40px',
-    },
-    row: {
-        paddingLeft: '30px',
-        paddingTop: '25px',
-        paddingBottom: '20px',
-        borderBottom: '1px #ccc solid',
-        margin: '5 30px',
-        cursor: 'pointer'
-    },
-    col1: {
-        width: '70%',
-        display: 'inline-block',
-        color: '#333'
-    },
-    col2: {
-        width: '20%', display: 'inline-block', textAlign: 'center'
-    },
-    col3: {
-        width: '10%', display: 'inline-block',
-        textAlign: 'center',
-        color: '#333',
-    },
-    hr: {
-        marginTop: '25px'
-    },
-    gray: {
-        color: '#999'
-    }
-}
+import { FaTrashAlt } from 'react-icons/fa'
 
 function Article({ _id, story_title, title, story_url, author, created_at, onDelete }) {
+    const [background, setBackground] = useState('#FFF');
+    const [display, setDisplay] = useState('none');
+    const onHover = () => {
+        setBackground('#f3f3f3')
+        setDisplay('inline-block')
+    };
+
+    const onLeave = () => {
+        setBackground('#fff')
+        setDisplay('none')
+    };
+    const styles = {
+        all: {
+            paddingLeft: '40px',
+            paddingRight: '40px',
+            // backgroundColor: '#F2F2F2'
+            backgroundColor: background
+        },
+        row: {
+            paddingLeft: '30px',
+            paddingTop: '25px',
+            paddingBottom: '20px',
+            borderBottom: '1px #ccc solid',
+            margin: '5 30px',
+            cursor: 'pointer'
+        },
+        col1: {
+            width: '70%',
+            display: 'inline-block',
+            color: '#333'
+        },
+        col2: {
+            width: '20%', display: 'inline-block', textAlign: 'center'
+        },
+        col3: {
+            width: '10%',
+            textAlign: 'center',
+            color: '#333',
+            display: 'inline-block'
+        },
+        icon: {
+            display: display
+        },
+        gray: {
+            color: '#999'
+        }
+    }
+
     const openInNewTab = (url) => {
         const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
         if (newWindow) newWindow.opener = null
@@ -52,18 +69,18 @@ function Article({ _id, story_title, title, story_url, author, created_at, onDel
     }
 
     return (
-        <div style={styles.all}>
-            <div style={styles.row}>
+        <div style={styles.all} onMouseOver={() => onHover()}
+            onMouseLeave={() => onLeave()} >
+            {console.log(styles)}
+            <div style={styles.row} >
                 <div style={styles.col1} onClick={onClickUrl(story_url)}>
                     {story_title || title}<span style={styles.gray}> - {author} - </span>
                 </div>
                 <div style={styles.col2} onClick={onClickUrl(story_url)}>
                     {handleFormat(created_at)}
                 </div>
-                <div style={styles.col3} >
-                    <div
-                        onClick={() => onDelete(_id)}>
-                    </div>
+                <div style={styles.col3}>
+                    <FaTrashAlt style={styles.icon} onClick={() => onDelete(_id)} />
                 </div>
             </div >
         </div>
